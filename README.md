@@ -11,7 +11,7 @@ This repository contains a pipeline for processing gendered German terms in news
 2. **Retranslation**: Convert gendered terms back to masculine plural form
 3. **Dataset Creation**: Create parallel corpora for machine translation training
 
-```mermaid
+mermaid
 graph LR
 A[HTML Files] --> B(Crawler & Extraction)
 B --> C[Raw XML]
@@ -20,8 +20,8 @@ D --> E[Retranslated XML]
 E --> F(Dataset Creation)
 F --> G[Train/Valid/Test Sets]
 
-Script Descriptions
-1. regex_crawler_1.py
+## Script Descriptions
+1. **regex_crawler_1.py**
 Purpose:
 Scans HTML files in a directory structure, extracts sentences containing gendered German terms using regex patterns, and outputs an XML file with matches.
 
@@ -53,13 +53,14 @@ output.xml: Output XML file path
 
 Output XML Structure:
 
-xml
+```xml
 <matches>
   <entry file="..." path="...">
     <match pattern="...">Full sentence containing gendered term</match>
   </entry>
 </matches>
-2. retranslate_xml.py
+```
+2. **retranslate_xml.py**
 Purpose:
 Processes the XML output from the crawler, retranslates gendered terms to masculine plural form, and outputs a new XML file with both versions.
 
@@ -81,7 +82,7 @@ Configurable timeout for processing actively written files
 
 Usage:
 
-bash
+```bash
 python retranslate_xml.py <input.xml> <output.xml> [--timeout 300]
 Arguments:
 
@@ -90,17 +91,20 @@ input.xml: XML file from regex_crawler_1.py
 output.xml: Output XML file path
 
 --timeout: Seconds to wait for new entries (default: 300)
+```
 
 Output XML Structure:
 
-xml
+```xml
 <entries>
   <entry file="..." path="..." pattern="...">
     <src_string>Masculine plural version</src_string>
     <trg_string>Original gendered version</trg_string>
   </entry>
 </entries>
-3. create_dataset.py
+```
+
+3. **create_dataset.py**
 Purpose:
 Creates parallel corpora datasets for machine translation from the retranslated XML file.
 
@@ -118,11 +122,12 @@ Removes duplicates and cleans text
 
 Usage:
 
-bash
+```bash
 python create_dataset.py <input.xml> \
   --outputs <base1> <prob1> <base2> <prob2> ... \
   [--timeout 300] \
   [--seed <random_seed>]
+```
 Arguments:
 
 input.xml: XML file from retranslate_xml.py
@@ -142,33 +147,37 @@ For each base_name in outputs:
 
 Example:
 
-bash
+```bash
 python create_dataset.py retranslated.xml \
   --outputs train 0.8 valid 0.1 test 0.1 \
   --timeout 600 \
   --seed 42
+```
 Pipeline Execution Workflow
 Step 1: Extract Gendered Terms
-bash
+```bash
 python regex_crawler_1.py newspaper_articles/ gendered_terms.xml
+```
 Step 2: Retranslate to Masculine Plural
-bash
+```bash
 python retranslate_xml.py gendered_terms.xml retranslated.xml --timeout 600
+```
 Step 3: Create Training Datasets
-bash
+```bash
 python create_dataset.py retranslated.xml \
   --outputs train 0.8 valid 0.1 test 0.1 \
   --timeout 600 \
   --seed 42
+```
 Step 4: Train OpenNMT Model
-bash
+```bash
 onmt_train \
   -config config.yml \
   -data data/processed-1 \
   -save_model models/gender_model
 Example config.yml:
-
-yaml
+```
+```yaml
 # config.yml
 data:
     train_features: train-1.src
@@ -190,14 +199,14 @@ layers: 6
 heads: 8
 Technical Notes
 Incomplete File Handling:
-
+```
 Both retranslate_xml.py and create_dataset.py can process actively written files
 
 Use the --timeout parameter to control how long to wait for new content
 
 Scripts automatically detect file truncation/rotation
 
-Data Formats:
+## Data Formats:
 
 All scripts use UTF-8 encoding
 
@@ -205,7 +214,7 @@ XML files are stream-processed for memory efficiency
 
 Output datasets are clean, parallel text files
 
-Customization:
+## Customization:
 
 Modify regex patterns in regex_crawler_1.py for different gendered forms
 
@@ -213,10 +222,10 @@ Adjust dataset splits with different probability values
 
 Add preprocessing steps as needed for specific requirements
 
-Requirements
+# Requirements
 Python 3.7+
 
-Required packages:
+## Required packages:
 
 beautifulsoup4
 
@@ -226,10 +235,11 @@ argparse
 
 Install dependencies with:
 
-bash
+```bash
 pip install beautifulsoup4 lxml
 Future Enhancements
 Add progress bars for long-running operations
+```
 
 Support additional gendered term patterns
 
