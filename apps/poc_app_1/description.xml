@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?><description>
+<manifest:manifest xmlns:manifest="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0">
+    <manifest:file-entry manifest:media-type="application/vnd.sun.star.uno-components" manifest:full-path="autocorrect_foo_to_bar.py"/>
+    </manifest:manifest></description>

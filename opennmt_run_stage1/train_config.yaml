@@ -1,0 +1,148 @@
+# ============================================================================
+# OpenNMT-py v3  —  Stage 1: German MASCULINE-span detection (SPECIFICATION.md §3.2)
+#
+# NOT the Approach B gendered-span-annotation task (opennmt_run/train_config.yaml).
+# Same seq2seq span-marking mechanism, different task:
+#   src:  Die Lehrer kommen morgen .              <- already-masculine text
+#   tgt:  Die <gender> Lehrer </gender> kommen morgen .   <- mark the word an
+#                                                             autocorrect feature
+#                                                             should offer to gender
+#
+# Data built by: claude_scripts/01b_extract_masculine_spans.py ->
+#                claude_scripts/run_stage1_pipeline.sh (extraction + merge) ->
+#                claude_scripts/convert_bio_to_opennmt.py (JSONL -> .src/.tgt) ->
+#                claude_scripts/build_opennmt_vocab.py (vocab)
+#
+# Tokenisation: WORD-LEVEL (whitespace split), no transforms, no BPE -- same
+# choice as opennmt_run/train_config.yaml. §9.4 of SPECIFICATION.md found this
+# causes real OOV corruption on the gendered-span-detection task; expect the
+# same or worse here (see this milestone's results section for the measured
+# effect on THIS task).
+#
+# GPU: this was trained on an NVIDIA RTX A4000 (16GB, ~13.6GB free at start),
+# smaller than the RTX 4090 (24GB) the Approach B checkpoints were trained on
+# -- batch/accum below are scaled down accordingly from opennmt_run/train_config.yaml.
+#
+# Workflow (from repo root):
+#   onmt_train -config opennmt_run_stage1/train_config.yaml
+#   onmt_translate -model opennmt_run_stage1/model/gendercheck_stage1_step_NNNNN.pt \
+#       -src opennmt_run_stage1/test.src -output opennmt_run_stage1/test.pred \
+#       -gpu 0 --beam_size 1 --batch_size 8
+#   (see claude_scripts/05_evaluate_opennmt.py's docstring for the pyonmttok/
+#   torch.load compat workarounds needed in this environment)
+# ============================================================================
+
+
+# ── Data ──────────────────────────────────────────────────────────────────────
+data:
+    corpus_1:
+        path_src: opennmt_run_stage1/train.src
+        path_tgt: opennmt_run_stage1/train.tgt
+        weight: 1
+
+    valid:
+        path_src: opennmt_run_stage1/valid.src
+        path_tgt: opennmt_run_stage1/valid.tgt
+
+
+# ── Vocabulary ────────────────────────────────────────────────────────────────
+src_vocab: opennmt_run_stage1/vocab.src
+tgt_vocab: opennmt_run_stage1/vocab.tgt
+share_vocab: false
+
+src_vocab_size: 50000
+tgt_vocab_size: 50000
+vocab_size_multiple: 8
+
+
+# ── Paths ─────────────────────────────────────────────────────────────────────
+save_data: opennmt_run_stage1/prepared/gendercheck_stage1
+overwrite: true
+
+save_model: opennmt_run_stage1/model/gendercheck_stage1
+save_checkpoint_steps: 2000
+keep_checkpoint: 5
+
+log_file: opennmt_run_stage1/model/train.log
+
+
+# ── Sequence lengths ──────────────────────────────────────────────────────────
+skip_empty_level: silent
+src_seq_length: 200
+tgt_seq_length: 220
+
+
+# ── Model architecture: Transformer base (same as Approach B) ─────────────────
+encoder_type: transformer
+decoder_type: transformer
+
+enc_layers: 6
+dec_layers: 6
+heads: 8
+hidden_size: 512
+word_vec_size: 512
+transformer_ff: 2048
+
+dropout_steps: [0]
+dropout: [0.1]
+attention_dropout: [0.1]
+
+max_relative_positions: 20
+
+
+# ── Training ──────────────────────────────────────────────────────────────────
+model_dtype: fp16
+
+# Scaled down from opennmt_run/train_config.yaml's 4096/accum-4 (RTX 4090,
+# 24GB) for the RTX A4000's smaller 16GB VRAM.
+batch_type: tokens
+batch_size: 2048
+batch_size_multiple: 8
+valid_batch_size: 1024
+
+accum_count: [4]
+accum_steps: [0]
+
+normalization: tokens
+
+# Dataset here is comparable in scale to Approach B's (~32k train examples
+# there vs. this run's actual count -- see results section for the real
+# number). Approach B's config targeted 70000 steps but the checkpoint that
+# was actually evaluated (§9) was step 29000; targeting a comparable budget
+# here rather than the untouched 70000 ceiling.
+train_steps: 20000
+valid_steps: 1000
+early_stopping: 10
+early_stopping_criteria: ppl
+
+average_decay: 0.0001
+average_every: 1
+
+
+# ── Optimisation ──────────────────────────────────────────────────────────────
+optim: adam
+adam_beta1: 0.9
+adam_beta2: 0.998
+
+decay_method: noam
+warmup_steps: 8000
+learning_rate: 2
+
+max_grad_norm: 0
+label_smoothing: 0.1
+param_init: 0.0
+param_init_glorot: true
+
+
+# ── GPU ───────────────────────────────────────────────────────────────────────
+world_size: 1
+gpu_ranks: [0]
+
+
+# ── Data loading ──────────────────────────────────────────────────────────────
+num_workers: 0
+bucket_size: 32768
+
+
+# ── Reporting ─────────────────────────────────────────────────────────────────
+report_every: 100

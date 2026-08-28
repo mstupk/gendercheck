@@ -1,0 +1,276 @@
+{
+  "per_convention": {
+    "asterisk": {
+      "type_accuracy": 0.9644970414201184,
+      "type_n": 507,
+      "freq_weighted_accuracy": 0.9865470852017937,
+      "freq_n": 2007
+    },
+    "binnen_i": {
+      "type_accuracy": 0.9905992949471211,
+      "type_n": 851,
+      "freq_weighted_accuracy": 0.9976369812435386,
+      "freq_n": 6771
+    },
+    "colon": {
+      "type_accuracy": 0.9905660377358491,
+      "type_n": 530,
+      "freq_weighted_accuracy": 0.9985827664399093,
+      "freq_n": 3528
+    },
+    "underscore": {
+      "type_accuracy": 0.7857142857142857,
+      "type_n": 42,
+      "freq_weighted_accuracy": 0.8372093023255814,
+      "freq_n": 86
+    }
+  },
+  "overall": {
+    "type_accuracy": 0.9792746113989638,
+    "type_n": 1930,
+    "freq_weighted_accuracy": 0.9949967721110394,
+    "freq_n": 12392
+  },
+  "top_failures": [
+    {
+      "stem": "Fatal",
+      "convention": "binnen_i",
+      "actual_core_form": "FatalImpact",
+      "count": 4
+    },
+    {
+      "stem": "Martin",
+      "convention": "underscore",
+      "actual_core_form": "Martin_meint",
+      "count": 4
+    },
+    {
+      "stem": "Trans",
+      "convention": "asterisk",
+      "actual_core_form": "Trans*lation",
+      "count": 4
+    },
+    {
+      "stem": "Ratgeber",
+      "convention": "binnen_i",
+      "actual_core_form": "RatgeberImmer",
+      "count": 3
+    },
+    {
+      "stem": "Mül",
+      "convention": "binnen_i",
+      "actual_core_form": "MülIhaufen",
+      "count": 3
+    },
+    {
+      "stem": "Trans",
+      "convention": "asterisk",
+      "actual_core_form": "Trans*gender",
+      "count": 3
+    },
+    {
+      "stem": "Trans",
+      "convention": "asterisk",
+      "actual_core_form": "Trans*menschen",
+      "count": 2
+    },
+    {
+      "stem": "Trans",
+      "convention": "asterisk",
+      "actual_core_form": "Trans*personen",
+      "count": 2
+    },
+    {
+      "stem": "Walnussbrotsharing",
+      "convention": "underscore",
+      "actual_core_form": "Walnussbrotsharing_jetzt",
+      "count": 2
+    },
+    {
+      "stem": "Ichund",
+      "convention": "binnen_i",
+      "actual_core_form": "IchundIch",
+      "count": 2
+    },
+    {
+      "stem": "LaenderReiseinformationen",
+      "convention": "underscore",
+      "actual_core_form": "LaenderReiseinformationen_node",
+      "count": 2
+    },
+    {
+      "stem": "Wähler",
+      "convention": "asterisk",
+      "actual_core_form": "Wähler*nnen",
+      "count": 2
+    },
+    {
+      "stem": "Trans",
+      "convention": "asterisk",
+      "actual_core_form": "Trans*feindlichkeit",
+      "count": 2
+    },
+    {
+      "stem": "Interview",
+      "convention": "colon",
+      "actual_core_form": "Interview:jpb",
+      "count": 1
+    },
+    {
+      "stem": "Interview",
+      "convention": "colon",
+      "actual_core_form": "Interview:jago",
+      "count": 1
+    },
+    {
+      "stem": "Romn",
+      "convention": "asterisk",
+      "actual_core_form": "Romn*ja",
+      "count": 1
+    },
+    {
+      "stem": "Wicht",
+      "convention": "binnen_i",
+      "actual_core_form": "WichtIch",
+      "count": 1
+    },
+    {
+      "stem": "Verlagsmitabeiter",
+      "convention": "asterisk",
+      "actual_core_form": "Verlagsmitabeiter*nnen",
+      "count": 1
+    },
+    {
+      "stem": "Trans",
+      "convention": "asterisk",
+      "actual_core_form": "Trans*mann",
+      "count": 1
+    },
+    {
+      "stem": "Hate",
+      "convention": "underscore",
+      "actual_core_form": "Hate_crime",
+      "count": 1
+    },
+    {
+      "stem": "Trans",
+      "convention": "asterisk",
+      "actual_core_form": "Trans*bereich",
+      "count": 1
+    },
+    {
+      "stem": "Disclaimer:",
+      "convention": "asterisk",
+      "actual_core_form": "Disclaimer:*nur",
+      "count": 1
+    },
+    {
+      "stem": "Seine",
+      "convention": "underscore",
+      "actual_core_form": "Seine_ihre",
+      "count": 1
+    },
+    {
+      "stem": "Asyl",
+      "convention": "colon",
+      "actual_core_form": "Asyl:nur",
+      "count": 1
+    },
+    {
+      "stem": "Genossen",
+      "convention": "asterisk",
+      "actual_core_form": "Genossen*nnen",
+      "count": 1
+    },
+    {
+      "stem": "Hinweis",
+      "convention": "colon",
+      "actual_core_form": "Hinweis:ich",
+      "count": 1
+    },
+    {
+      "stem": "Trans",
+      "convention": "asterisk",
+      "actual_core_form": "Trans*frau",
+      "count": 1
+    },
+    {
+      "stem": "Rechtsextremist",
+      "convention": "asterisk",
+      "actual_core_form": "Rechtsextremist*en",
+      "count": 1
+    },
+    {
+      "stem": "Selected",
+      "convention": "underscore",
+      "actual_core_form": "Selected_quote",
+      "count": 1
+    },
+    {
+      "stem": "Schwimm",
+      "convention": "asterisk",
+      "actual_core_form": "Schwimm*bäder",
+      "count": 1
+    },
+    {
+      "stem": "Pro",
+      "convention": "binnen_i",
+      "actual_core_form": "ProIdee",
+      "count": 1
+    },
+    {
+      "stem": "Internet",
+      "convention": "underscore",
+      "actual_core_form": "Internet_ausschalten",
+      "count": 1
+    },
+    {
+      "stem": "Trans",
+      "convention": "asterisk",
+      "actual_core_form": "Trans*phobie",
+      "count": 1
+    },
+    {
+      "stem": "Geschlecht",
+      "convention": "underscore",
+      "actual_core_form": "Geschlecht_ern",
+      "count": 1
+    },
+    {
+      "stem": "BCller",
+      "convention": "underscore",
+      "actual_core_form": "BCller_sen",
+      "count": 1
+    },
+    {
+      "stem": "Arbeitsmigranten",
+      "convention": "asterisk",
+      "actual_core_form": "Arbeitsmigranten*nnen",
+      "count": 1
+    },
+    {
+      "stem": "Trans",
+      "convention": "asterisk",
+      "actual_core_form": "Trans*aktivisten",
+      "count": 1
+    },
+    {
+      "stem": "Afrokolumb",
+      "convention": "binnen_i",
+      "actual_core_form": "AfrokolumbIanerinnen",
+      "count": 1
+    },
+    {
+      "stem": "Women",
+      "convention": "binnen_i",
+      "actual_core_form": "WomenIrrhaus",
+      "count": 1
+    },
+    {
+      "stem": "Zuger",
+      "convention": "colon",
+      "actual_core_form": "Zuger:eiste",
+      "count": 1
+    }
+  ]
+}

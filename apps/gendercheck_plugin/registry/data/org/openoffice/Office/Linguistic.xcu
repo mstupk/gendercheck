@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Registers org.gendercheck.Proofreader as a German grammar checker.
+  Schema/format verified directly against LibreOffice's own bundled
+  registration for its built-in LanguageTool integration
+  (/usr/lib64/libreoffice/share/registry/lingucomponent.xcd,
+  ServiceManager/GrammarCheckers/org.openoffice.lingu.LanguageToolGrammarChecker)
+  rather than guessed from documentation; see SPECIFICATION.md, section 13.2.
+-->
+<oor:component-data xmlns:oor="http://openoffice.org/2001/registry"
+                     xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                     oor:name="Linguistic" oor:package="org.openoffice.Office">
+  <node oor:name="ServiceManager">
+    <node oor:name="GrammarCheckers">
+      <node oor:name="org.gendercheck.Proofreader" oor:op="replace">
+        <prop oor:name="Locales" oor:type="oor:string-list">
+          <value>de-DE</value>
+        </prop>
+      </node>
+    </node>
+  </node>
+</oor:component-data>

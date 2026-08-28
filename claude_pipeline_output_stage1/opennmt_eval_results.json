@@ -1,0 +1,27 @@
+{
+  "n_examples": 3850,
+  "bleu": 75.01501343082604,
+  "chrf": 84.69628207376316,
+  "ter": 9.284699194694458,
+  "unk_rate_pred_tokens_pct": 8.136494822024787,
+  "length_aligned_examples": 3829,
+  "length_misaligned_examples": 21,
+  "length_misaligned_pct": 0.5454545454545454,
+  "gold_span_total": 2446,
+  "pred_span_total": 2318,
+  "exact_span_match_total": 2148,
+  "span_exact_precision": 0.9266609145815358,
+  "span_exact_recall": 0.8781684382665577,
+  "span_exact_f1": 0.9017632241813602,
+  "convention_breakdown": {
+    "unclassified": {
+      "gold_spans": 2446,
+      "exact_matches": 2148,
+      "recall_pct": 87.81684382665577
+    }
+  },
+  "seqeval_token_precision": 0.9314830875975716,
+  "seqeval_token_recall": 0.8828606658446363,
+  "seqeval_token_f1": 0.9065203629457693,
+  "seqeval_report": "              precision    recall  f1-score   support\n\n      GENDER     0.9315    0.8829    0.9065      2433\n\n   micro avg     0.9315    0.8829    0.9065      2433\n   macro avg     0.9315    0.8829    0.9065      2433\nweighted avg     0.9315    0.8829    0.9065      2433\n"
+}

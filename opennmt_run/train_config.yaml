@@ -1,0 +1,143 @@
+# ============================================================================
+# OpenNMT-py v3  —  German Gender Annotation  (RTX 4090 / 24 GB VRAM)
+#
+# Task: seq2seq span annotation
+#   src:  Die Lehrer kommen morgen .
+#   tgt:  Die <gender> Lehrer </gender> kommen morgen .
+#
+# Tokenisation: WORD-LEVEL (whitespace split)
+#   <gender> and </gender> are plain vocabulary tokens in vocab.tgt.
+#   No transforms, no BPE.
+#
+# Vocabulary: built by claude_scripts/build_opennmt_vocab.py
+#   (onmt_build_vocab is unavailable — pyonmttok not installable here).
+#   vocab.src / vocab.tgt:  word<TAB>count format, 50 000 tokens each.
+#   vocab.tgt forces <gender> and </gender> regardless of frequency.
+#
+# ALL PATHS are relative to ~/  (home directory).
+# The project must be placed at ~/gendercheck/ on the target machine.
+#
+# Workflow (from ~/):
+#   # 1. Train
+#   onmt_train -config opennmt_run/train_config.yaml
+#
+#   # 2. Translate test set
+#   onmt_translate \
+#       -model  opennmt_run/model/gendercheck_step_NNNNN.pt \
+#       -src    opennmt_run/test.src \
+#       -output opennmt_run/test.pred \
+#       -gpu 0 --beam_size 5 --batch_size 4096 --batch_type tokens
+#
+#   # 3. Score
+#   sacrebleu opennmt_run/test.tgt \
+#       -i opennmt_run/test.pred -m bleu chrf ter
+# ============================================================================
+
+
+# ── Data ──────────────────────────────────────────────────────────────────────
+data:
+    corpus_1:
+        path_src: opennmt_run/train.src
+        path_tgt: opennmt_run/train.tgt
+        weight: 1
+
+    valid:
+        path_src: opennmt_run/valid.src
+        path_tgt: opennmt_run/valid.tgt
+
+
+# ── Vocabulary ────────────────────────────────────────────────────────────────
+# src and tgt are NOT shared: tgt contains <gender> and </gender>, src does not.
+src_vocab: opennmt_run/vocab.src
+tgt_vocab: opennmt_run/vocab.tgt
+share_vocab: false
+
+src_vocab_size: 50000
+tgt_vocab_size: 50000
+vocab_size_multiple: 8
+
+
+# ── Paths ─────────────────────────────────────────────────────────────────────
+save_data: opennmt_run/prepared/gendercheck
+overwrite: true
+
+save_model: opennmt_run/model/gendercheck
+save_checkpoint_steps: 5000
+keep_checkpoint: 5
+
+log_file: opennmt_run/model/train.log
+
+
+# ── Sequence lengths ──────────────────────────────────────────────────────────
+skip_empty_level: silent
+src_seq_length: 200
+tgt_seq_length: 220
+
+
+# ── Model architecture: Transformer base ──────────────────────────────────────
+encoder_type: transformer
+decoder_type: transformer
+
+enc_layers: 6
+dec_layers: 6
+heads: 8
+hidden_size: 512
+word_vec_size: 512
+transformer_ff: 2048
+
+dropout_steps: [0]
+dropout: [0.1]
+attention_dropout: [0.1]
+
+max_relative_positions: 20
+
+
+# ── Training ──────────────────────────────────────────────────────────────────
+model_dtype: fp16
+
+batch_type: tokens
+batch_size: 4096
+batch_size_multiple: 8
+valid_batch_size: 2048
+
+accum_count: [4]
+accum_steps: [0]
+
+normalization: tokens
+
+train_steps: 70000
+valid_steps: 1000
+early_stopping: 10
+early_stopping_criteria: ppl
+
+average_decay: 0.0001
+average_every: 1
+
+
+# ── Optimisation ──────────────────────────────────────────────────────────────
+optim: adam
+adam_beta1: 0.9
+adam_beta2: 0.998
+
+decay_method: noam
+warmup_steps: 8000
+learning_rate: 2
+
+max_grad_norm: 0
+label_smoothing: 0.1
+param_init: 0.0
+param_init_glorot: true
+
+
+# ── GPU ───────────────────────────────────────────────────────────────────────
+world_size: 1
+gpu_ranks: [0]
+
+
+# ── Data loading ──────────────────────────────────────────────────────────────
+num_workers: 0
+bucket_size: 32768
+
+
+# ── Reporting ─────────────────────────────────────────────────────────────────
+report_every: 100

@@ -1,0 +1,97 @@
+{
+  "n_hard_negative_test_examples": 322,
+  "stage1_model": {
+    "n_examples": 322,
+    "n_still_flagged": 322,
+    "false_positive_rate_on_hard_negatives": 1.0,
+    "sample_still_wrong": [
+      {
+        "sentence": "Das unübersehbare Leid der Palästinenser, das das Ergebnis einer Vielzahl religiöser, politischer und finanzieller Interessen im arabischen Raum ist, wird als zu komplexes Problem empfunden.",
+        "originally_flagged_word": "Palästinenser,"
+      },
+      {
+        "sentence": "Vor 30 Jahren noch hatten Präventionsprogramme oder Arbeitsbeschaffungsmaßnahmen viele Anhänger.",
+        "originally_flagged_word": "Anhänger."
+      },
+      {
+        "sentence": "An dem Empfang der IHK nahmen auch 270 Unternehmensleiter aus der DDR teil.",
+        "originally_flagged_word": "Unternehmensleiter"
+      },
+      {
+        "sentence": "Manche Spriträuber kämen sogar in Autos ohne Nummernschild.",
+        "originally_flagged_word": "Spriträuber"
+      },
+      {
+        "sentence": "Gleichzeitig sollen laut Vorlage des Senats an den Hauptausschuß des Abgeordnetenhauses die Sozialtarife, darunter für Rentner, Studenten und Arbeitslose, erhöht werden.",
+        "originally_flagged_word": "Rentner,"
+      },
+      {
+        "sentence": "Aber sie haben ein gemeinsames Problem: Autofahrer, die ihnen die Spur blockieren.",
+        "originally_flagged_word": "Autofahrer,"
+      },
+      {
+        "sentence": "Von Malte Kreutzfeldt Strompreise sinken leicht Eine Pizza mehr im Jahr 2015 ist der Strom billiger geworden – endlich, sagen Verbraucherschützer.",
+        "originally_flagged_word": "Verbraucherschützer."
+      },
+      {
+        "sentence": "Foto: reuters Interview von Eric Bonse taz: Frau Eberhardt, Donnerstag tritt Ceta in Kraft – wo bleiben die Proteste der Kritiker?",
+        "originally_flagged_word": "Kritiker?"
+      },
+      {
+        "sentence": "So müssen nicht nur die 15.000 Kontigent-Flüchtlinge, die während der Nato-Bombardierungen aufgenommen wurden, zurückkehren, sondern auch die schätzungsweise 180.000 Kosovo-Albaner, die teilweise schon seit Jahren mit einer unsicheren Aufenthaltserlaubnis in Deutschland leben.",
+        "originally_flagged_word": "Kosovo-Albaner,"
+      },
+      {
+        "sentence": "Dort sind die Asylanhörer und Verwaltungsgerichte qualifiziert, über Verfolgungsgründe in Viet­nam zu entscheiden.",
+        "originally_flagged_word": "Asylanhörer"
+      }
+    ]
+  },
+  "stage2_model": {
+    "n_examples": 322,
+    "n_still_flagged": 94,
+    "false_positive_rate_on_hard_negatives": 0.2919254658385093,
+    "sample_still_wrong": [
+      {
+        "sentence": "Vor 30 Jahren noch hatten Präventionsprogramme oder Arbeitsbeschaffungsmaßnahmen viele Anhänger.",
+        "originally_flagged_word": "Anhänger."
+      },
+      {
+        "sentence": "Dort sind die Asylanhörer und Verwaltungsgerichte qualifiziert, über Verfolgungsgründe in Viet­nam zu entscheiden.",
+        "originally_flagged_word": "Asylanhörer"
+      },
+      {
+        "sentence": "Alternativ müssten die Gehalter im Führungssektor signifikant sinken, um ausgleichend zu wirken.",
+        "originally_flagged_word": "Gehalter"
+      },
+      {
+        "sentence": "Ihre Gegner, vorneweg Fraktionsvorsitzender Ole von Beust und Landesvorsitzender Dirk Fischer, argumentierten, Mitgliederbefragungen seien zwar zu begrüßen, für diese komplexe Frage aber ein ungeeignetes Instrument.",
+        "originally_flagged_word": "Gegner,"
+      },
+      {
+        "sentence": "Jugendsenatorin sieht keine Veranlassung zum Protest 30.11.1995 0:00 Uhr teilen Diesen Artikel teilen Bei der Verfolgung von Graffiti-Sprayern deckt die Sonderkommission der Polizei die Staatsanwalt mit Arbeit ein.",
+        "originally_flagged_word": "Staatsanwalt"
+      },
+      {
+        "sentence": "Zustimmen werden CDU und FDP nun allerdings einer geänderten Fassung ihrer Innenpolitiker: Danach soll zunächst Salames älteste Tochter mit Unterstützung des Landes die im Aufenthaltsgesetz vorgesehene Aufenthaltsgenehmigung für gut integrierte Heranwachsende bekommen.",
+        "originally_flagged_word": "Innenpolitiker:"
+      },
+      {
+        "sentence": "Gegen die Weltgeschichte kann man nicht Klavier spielen, nicht einmal die so musikalischen Österreicher.",
+        "originally_flagged_word": "Österreicher."
+      },
+      {
+        "sentence": "Mit dem anderen Einzelhandels-Standort in Vegesack, dem Projekt Haven Höövt, mussten sich die Wirtschaftsförderer gestern nicht befassen: Die Wirtschaftsbehörde hatte einen Antrag auf Nachbewilligung vorbereitet, da der bisher genehmigte Kostenrahmen erheblich überschritten worden ist.",
+        "originally_flagged_word": "Wirtschaftsförderer"
+      },
+      {
+        "sentence": "Wenn Hans-Hermann also endlich das Altpapier entsorgte und seinen danach Uhrzeiger promt weiterdrehte, bewegte er gleich alle anderen Zeige mit.",
+        "originally_flagged_word": "Zeige"
+      },
+      {
+        "sentence": "So scheitert die Inbetriebnahme des Schnellen Brüters Monju derzeit an der fehlenden Zustimmung der lokalen Politiker.",
+        "originally_flagged_word": "Politiker."
+      }
+    ]
+  }
+}

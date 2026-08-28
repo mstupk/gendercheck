@@ -1,0 +1,24 @@
+# Raw scraped newspaper corpora and huge intermediate pipeline output.
+# Not this project's own work product, and/or fully reproducible via the
+# commands documented in SPECIFICATION.md's per-milestone "Reproducing this"
+# sections. Sizes as of 2026-08-28: out/ ~91G, corpora/ ~15G, testruns/ ~1.8G.
+/out/
+/corpora/
+/testruns/
+/oag-pipeline/
+
+# Stale historical snapshot clones (see SPECIFICATION.md §7) -- contain their
+# own nested .git directories, kept out entirely rather than as embedded repos.
+/git/
+
+# Redundant backup zip of files already present elsewhere in the tree.
+/Archive.zip
+
+# Trained model checkpoints -- large binaries (multiple GB each: BERT
+# safetensors, OpenNMT .pt checkpoints). Reproduction commands are in
+# SPECIFICATION.md §9-§13; everything else in these output directories
+# (JSONL data, eval-result JSON, vocab/src/tgt text files) is small and kept.
+**/model/
+
+__pycache__/
+*.pyc

@@ -1,0 +1,42 @@
+{
+  "n_examples": 3165,
+  "bleu": 76.20608813215016,
+  "chrf": 85.61965626665683,
+  "ter": 9.078100104028126,
+  "unk_rate_pred_tokens_pct": 8.182082375630763,
+  "length_aligned_examples": 3156,
+  "length_misaligned_examples": 9,
+  "length_misaligned_pct": 0.2843601895734597,
+  "gold_span_total": 2084,
+  "pred_span_total": 1984,
+  "exact_span_match_total": 1879,
+  "span_exact_precision": 0.9470766129032258,
+  "span_exact_recall": 0.9016314779270633,
+  "span_exact_f1": 0.923795476892822,
+  "convention_breakdown": {
+    "asterisk": {
+      "gold_spans": 220,
+      "exact_matches": 208,
+      "recall_pct": 94.54545454545455
+    },
+    "binnen_i": {
+      "gold_spans": 340,
+      "exact_matches": 249,
+      "recall_pct": 73.23529411764706
+    },
+    "colon": {
+      "gold_spans": 1523,
+      "exact_matches": 1422,
+      "recall_pct": 93.36835193696652
+    },
+    "underscore": {
+      "gold_spans": 1,
+      "exact_matches": 0,
+      "recall_pct": 0.0
+    }
+  },
+  "seqeval_token_precision": 0.9480322906155398,
+  "seqeval_token_recall": 0.9029312830370014,
+  "seqeval_token_f1": 0.9249323160226434,
+  "seqeval_report": "              precision    recall  f1-score   support\n\n      GENDER     0.9480    0.9029    0.9249      2081\n\n   micro avg     0.9480    0.9029    0.9249      2081\n   macro avg     0.9480    0.9029    0.9249      2081\nweighted avg     0.9480    0.9029    0.9249      2081\n"
+}

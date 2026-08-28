@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest:manifest xmlns:manifest="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0">
+  <manifest:file-entry manifest:full-path="/" manifest:media-type="application/vnd.sun.star.extension"/>
+  <manifest:file-entry manifest:full-path="python/gendercheck_proofreader.py" manifest:media-type="application/vnd.sun.star.uno-component;type=Python"/>
+  <manifest:file-entry manifest:full-path="registry/data/org/openoffice/Office/Linguistic.xcu" manifest:media-type="application/vnd.sun.star.configuration-data"/>
+</manifest:manifest>

@@ -1,0 +1,3 @@
+Gendercheck: suggests gender-inclusive forms for German masculine-generic nouns
+(e.g. "Lehrer" -> "Lehrer:innen") via LibreOffice's grammar-checker suggestion UI.
+Requires the Gendercheck inference server (inference_server.py) running locally.
