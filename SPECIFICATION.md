@@ -362,12 +362,18 @@ current tree, since it's actively confusing right now:
   once §4 is implemented, or mark it explicitly as a design target in the meantime so
   future contributors (including future Claude Code sessions) don't assume the
   `XKeyListener` hookup already works.
-- **No top-level git repository** for the working tree at `/home/bb4g/work/gendercheck/`
-  itself — only the `git/gendercheck` and `git/gendercheck-0.1` subfolders are actual
-  clones, and they're stale snapshots (last commit predates most of `claude_scripts/`
-  and `opennmt_run/`). Decide whether those two are meant to stay as historical
-  snapshots or should be retired in favor of turning the working tree itself into the
-  canonical repo.
+- ~~**No top-level git repository** for the working tree~~ — **resolved.** The working
+  tree at `/home/bb4g/work/gendercheck/` is now its own git repository (initial commit
+  `b1292c5`), independent of the parent `emotiv-eeg-work` repo at `/home/bb4g/work/`
+  whose `.gitignore` deliberately excludes `gendercheck/` (an allowlist scoped to its own
+  EEG projects — not an oversight, so gendercheck was never meant to live inside it).
+  `.gitignore` excludes raw corpora, huge intermediate pipeline output, trained model
+  checkpoints, and the stale `git/gendercheck*` snapshots below — all reproducible via
+  this document's commands, so nothing is lost by keeping them out of version control.
+  The stale `git/gendercheck` and `git/gendercheck-0.1` snapshots themselves are still
+  present on disk (last commit predates most of `claude_scripts/` and `opennmt_run/`)
+  but are now git-ignored rather than tracked; whether to delete them outright is still
+  an open call for whoever owns this repo, not made here.
 
 ---
 
